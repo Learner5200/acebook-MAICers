@@ -3,5 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  it { is_expected.to be }
+  it { should be }
+  it { should have_many :posts}
 end
