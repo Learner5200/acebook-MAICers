@@ -1,17 +1,5 @@
 </br>
 <p><%= @post.message  %></p>
-Comments:
-<% @post.comments.each do |comment| %>
-  <div id="comment_<%= comment.id %>">
-    <br>
-    <pre><%= comment.body %></pre>
-    <p>Commented by <%= comment.user.name %> at: <%= comment.updated_at.strftime("%Y-%m-%d %k:%M")%></p>
-    <% if current_user.id == comment.user_id %>
-    <%= button_to "Delete", {:controller => :comments,
-      :action => 'destroy', :id => comment.id, :post_id => @post.id}, :method => :delete %>
-      <% end %>
-  </div>
-<% end %>
 
 <% if current_user.id == @post.user_id %>
   <%= button_to "Delete", {:controller => :posts,
@@ -21,3 +9,20 @@ Comments:
 <% end %>
 <%= button_to "Comment", {:controller => :comments,
   :action => 'new', :post_id => @post.id, :user_id => @post.user_id }, :method => :get, :class => 'btn'%>
+
+Comments:
+<% @post.comments.each do |comment| %>
+  <div id="comment_<%= comment.id %>">
+    <br>
+    <pre><%= comment.body %></pre>
+    <p>Commented by <%= comment.user.name %> at: <%= comment.updated_at.strftime("%Y-%m-%d %k:%M")%></p>
+    <% if current_user.id == comment.user_id %>
+      <%= button_to "Edit Comment", {:controller => :comments,
+      :action => 'edit', :id => comment.id, :post_id => @post.id}, :method => :get %>
+      <%= button_to "Delete Comment", {:controller => :comments,
+        :action => 'destroy', :id => comment.id, :post_id => @post.id}, :method => :delete %>
+    <% end %>
+  </div>
+<% end %>
+
+

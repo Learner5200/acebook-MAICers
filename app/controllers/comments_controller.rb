@@ -11,6 +11,23 @@ class CommentsController < ApplicationController
     redirect_to comment.post
   end
 
+  def edit
+    @comment = Comment.find(params[:id])
+    if Time.now > (@comment.created_at + 10.minutes)
+      flash[:notice] = 'Error: You do not have permissions to edit this comment 10 mins after creation'
+      redirect_to @comment.post
+    end
+  end
+
+  def update
+    comment = Comment.find(params[:id])
+    if comment.update(comment_params)
+      redirect_to comment.post
+    else
+      render 'edit'
+    end
+  end
+
   def destroy
     comment = Comment.find(params[:id])
     comment.destroy
