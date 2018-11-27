@@ -1,5 +1,5 @@
 <%= form_for [@post, @comment] do |form| %>
   <%= form.label :body %>
-  <%= form.text_area :body %>
-  <%= form.submit "Submit" %>
+  <%= form.text_area :body, :class => 'form-control'%>
+  <%= form.submit "Submit", :class => 'btn'%>
 <% end %>
