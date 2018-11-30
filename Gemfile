@@ -34,20 +34,21 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'rubocop', require: false
+gem "rubocop-rails"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
+  gem 'database_cleaner'
   gem 'launchy'
   gem 'rspec-rails', '~> 3.5'
   gem 'selenium-webdriver'
+  gem 'shoulda-matchers'
   gem 'simplecov'
   gem 'simplecov-console'
   gem 'timecop'
-  gem 'shoulda-matchers'
-  gem 'database_cleaner'
 end
 
 group :development do

@@ -24,5 +24,4 @@ RSpec.feature 'Creating comments', type: :feature do
     expect(page).to have_content('this is a comment on another users post')
     expect(page).to have_content('Successfully commented!')
   end
-
 end

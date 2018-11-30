@@ -23,7 +23,7 @@ RSpec.feature 'Timeline', type: :feature do
     Timecop.freeze(time = Time.now) do
       post_message(message: 'Hello, world!')
     end
-    expect(page).to have_content "#{time.strftime('%Y-%m-%d %k:%M')}"
+    expect(page).to have_content time.strftime('%Y-%m-%d %k:%M').to_s
   end
 
   scenario 'Redirects to index if not logged in' do

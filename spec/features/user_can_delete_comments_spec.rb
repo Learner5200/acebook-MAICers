@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 # # frozen_string_literal: true
 
 require 'rails_helper'
-
 
 RSpec.feature 'Deleting a comment', type: :feature do
   before do
@@ -25,8 +26,7 @@ RSpec.feature 'Deleting a comment', type: :feature do
     visit '/'
     click_link 'Hello, world!'
     within('div#comment_1') do
-      expect(page).not_to have_selector(:button, "Delete")
+      expect(page).not_to have_selector(:button, 'Delete')
     end
   end
-
 end

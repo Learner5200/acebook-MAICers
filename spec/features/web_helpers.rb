@@ -8,7 +8,7 @@ end
 
 def comment(body:)
   click_button 'Comment'
-  fill_in('Body', with: body )
+  fill_in('Body', with: body)
   click_button 'Submit'
 end
 
@@ -27,5 +27,5 @@ def login(email:, password:)
   click_link('Login')
   fill_in(:user_email, with: email)
   fill_in(:user_password, with: password)
-  click_button "Log in"
+  click_button 'Log in'
 end

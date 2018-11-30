@@ -22,10 +22,7 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
-    if current_user.id != @post.user_id
-      flash[:notice] = 'Error: You do not have permissions to edit this message'
-      redirect_to @post
-    elsif Time.now > (@post.created_at + 10.minutes)
+    if Time.now > (@post.created_at + 10.minutes)
       flash[:notice] = 'Error: You do not have permissions to edit this message 10 mins after creation'
       redirect_to @post
     end
@@ -33,19 +30,12 @@ class PostsController < ApplicationController
 
   def update
     post = Post.find(params[:id])
-    if post.update(post_params)
-      redirect_to '/'
-    else
-      render 'edit'
-    end
+    post.update(post_params)
+    redirect_to '/'
   end
 
   def destroy
     post = Post.find(params[:id])
-    if post.user_id != current_user.id
-      flash[:notice] = 'Error: You do not have permissions to delete this message'
-      redirect_to post
-    end
     post.destroy
     redirect_to '/'
   end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
   before_action :authenticate_user!
   def new
@@ -21,11 +23,8 @@ class CommentsController < ApplicationController
 
   def update
     comment = Comment.find(params[:id])
-    if comment.update(comment_params)
-      redirect_to comment.post
-    else
-      render 'edit'
-    end
+    comment.update(comment_params)
+    redirect_to comment.post
   end
 
   def destroy
@@ -42,5 +41,4 @@ class CommentsController < ApplicationController
     body_hash = params.require(:comment).permit(:body)
     post_id_hash.merge(body_hash)
   end
-
 end

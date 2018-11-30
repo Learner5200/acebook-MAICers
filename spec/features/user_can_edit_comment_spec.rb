@@ -19,18 +19,18 @@ RSpec.feature 'Updating Comments', type: :feature do
     end
   end
 
-  scenario "user cannot update a post after 10 minutes" do
+  scenario 'user cannot update a comment after 10 minutes' do
     Timecop.freeze(time = 11.minutes.from_now) do
       click_button 'Edit Comment'
       expect(page).to have_content('Error: You do not have permissions to edit this comment 10 mins after creation')
     end
   end
 
-  scenario "user cannot update another user's post" do
+  scenario "user cannot update another user's comment" do
     click_link 'Logout'
     login(email: 'test2@user.com', password: 'qwerty')
     visit '/'
     click_link 'I am test user'
-    expect(page).not_to have_selector(:button, "Edit Comment")
+    expect(page).not_to have_selector(:button, 'Edit Comment')
   end
 end

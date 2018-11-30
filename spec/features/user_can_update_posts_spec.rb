@@ -19,7 +19,7 @@ RSpec.feature 'Updating Posts', type: :feature do
     end
   end
 
-  scenario "user cannot update a post after 10 minutes" do
+  scenario 'user cannot update a post after 10 minutes' do
     click_link 'Hello, world!'
     Timecop.freeze(time = 11.minutes.from_now) do
       click_button 'Edit'
@@ -29,10 +29,6 @@ RSpec.feature 'Updating Posts', type: :feature do
 
   scenario "user cannot update another user's post" do
     click_link 'This is test user 2'
-    expect(page).not_to have_button("Edit")
+    expect(page).not_to have_button('Edit')
   end
-
-
-
-
 end
